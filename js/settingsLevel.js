@@ -70,7 +70,7 @@ function returnTop(e) {
     }
 }
 
-export function getSettingsLevel() {
+function getSettingsLevel() {
     console.log("関数内のsettingsLevelは"+settingsLevel);
     return settingsLevel;
 }
