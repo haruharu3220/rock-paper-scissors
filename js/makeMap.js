@@ -108,6 +108,24 @@ aisle_pacman.src = 'img/aisle5.png';
 var point = new Image();
 point.src = 'img/point.png';
 
+//パックマンのImageオブジェクトを作る
+var pacman_default = new Image();
+pacman_default.src = 'img/pacman.png';
+
+//パックマン(グー)のImageオブジェクトを作る
+var pacman_gu = new Image();
+pacman_gu.src = 'img/pacman_gu.png';
+
+//パックマン(チョキ)のImageオブジェクトを作る
+var pacman_choki = new Image();
+pacman_choki.src = 'img/pacman_choki.png';
+
+//パックマン（パー）のImageオブジェクトを作る
+var pacman_pa = new Image();
+pacman_pa.src = 'img/pacman_pa.png';
+
+
+
 //キーボードのオブジェクトを作成
 var key = new Object();
 key.up = false;
@@ -118,13 +136,6 @@ key.push = '';
 
 //クリア判定フラグ
 let clearFlig = false;
-
-
-
-
-
-
-
 
 //マップの作成
 var map = [
@@ -186,21 +197,18 @@ function main() {
     //アイテム格納領域の作成
     for (var i = 0; i < item.length; i++) {
         if (item[i] === 0) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 1) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 2) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 3) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 4) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 5) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 6) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
+        if (item[i] === 1) Item_area.drawImage(point, 0, 50 * i, 50, 50);
+        if (item[i] === 2) Item_area.drawImage(aisle, 0, 50 * i, 50, 50);
+        if (item[i] === 3) Item_area.drawImage(pacman_default, 0, 50 * i, 50, 50);
+        if (item[i] === 4) Item_area.drawImage(pacman_gu, 0, 50 * i, 50, 50);
+        if (item[i] === 5) Item_area.drawImage(pacman_choki, 0, 50 * i, 50, 50);
+        if (item[i] === 6) Item_area.drawImage(pacman_pa, 0, 50 * i, 50, 50);
         if (item[i] === 7) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
         if (item[i] === 8) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 9) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 10) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 11) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 12) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 13) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-        if (item[i] === 14) Item_area.drawImage(aisle_pacman, 0, 50 * i, 50, 50);
-
+        if (item[i] === 9) Item_area.drawImage(gu, 0, 50 * i, 50, 50);
+        if (item[i] === 10) Item_area.drawImage(gu, 0, 50 * i, 50, 50);
+        if (item[i] === 11) Item_area.drawImage(choki, 0, 50 * i, 50, 50);
+        if (item[i] === 12) Item_area.drawImage(gu, 0, 50 * i, 50, 50);
     }
 
     // 線の色
@@ -560,3 +568,34 @@ function move_random(Object) {
     }
     //}
 }
+
+let makeMapAreaX=0; //クリックしたX座標
+let makeMapAreaY=0; //クリックしたY座標
+
+let mapItemX=0; //クリックしたX座標
+let mapItemY=0; //クリックしたY座標
+
+$("#makeMapItem").on("click", function (e) {
+    // var mousePos = getMousePosition(Item_area, evt);
+    // console.log("aaa" + mousePos.x);
+    // console.log("aaa" + mousePos.y);
+    // クリック位置の座標計算（canvasの左上を基準。-2ずつしているのはborderの分）
+    var rect = e.target.getBoundingClientRect();
+    mapItemX = e.clientX - Math.floor(rect.left) - 2;
+    mapItemY = e.clientY - Math.floor(rect.top) - 2;
+    console.log( mapItemX,~~(mapItemY/50) );
+}); 
+
+$("#makeMapArea").on("click", function (e) {
+    // var mousePos = getMousePosition(Item_area, evt);
+    // console.log("aaa" + mousePos.x);
+    // console.log("aaa" + mousePos.y);
+    // クリック位置の座標計算（canvasの左上を基準。-2ずつしているのはborderの分）
+    var rect = e.target.getBoundingClientRect();
+    makeMapAreaX = e.clientX - Math.floor(rect.left) - 2;
+    makeMapAreaY = e.clientY - Math.floor(rect.top) - 2;
+    console.log( makeMapAreaX,makeMapAreaY );
+
+    mapItemY/50;
+
+}); 
